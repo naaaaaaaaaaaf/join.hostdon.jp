@@ -1,0 +1,18 @@
+{
+  "name": "join.plusminus.io",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@vercel/node": "^3.0.5",
+    "compare-versions": "^6.1.0"
+  },
+  "scripts": {
+    "postinstall": "chmod +x ./bin/*; cp sample.env .env; ./bin/generate.ts"
+  }
+}
