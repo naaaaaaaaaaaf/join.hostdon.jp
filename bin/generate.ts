@@ -45,7 +45,7 @@ for (const [index, version] of versions.entries()) {
   }
 
   const versionPath = resolve(distVersionsDir, `${version.version}.json`);
-  const body = JSON.stringify({ updatesAvailable }, null, 2);
+  const body = JSON.stringify({ updatesAvailable });
   await writeFile(versionPath, body, "utf8");
 }
 
