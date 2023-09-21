@@ -24,7 +24,7 @@ const versionsDir = resolve(__dirname, "../versions");
 const files = await readdir(versionsDir, "utf8");
 files.sort((a, b) => compareVersions(formatVersion(a), formatVersion(b)));
 
-console.log("versions");
+console.log("versions:");
 files.forEach((file) => console.log(file));
 
 const versions: Version[] = [];
@@ -40,12 +40,15 @@ for (const file of files) {
   });
 }
 
+console.log("updates:");
 for (const [index, version] of versions.entries()) {
   const updatesAvailable = [];
   for (let i = index + 1; i < versions.length; i++) {
     // FIXME: stable, stable, beta, beta, rc, stable みたいに途中であまり意味が無いプレリリースが入らないようにしたい
     updatesAvailable.push(versions[i]);
   }
+
+  console.log(version.version, "->", updatesAvailable.map((update) => update.version).join(", ") || "-");
 
   const versionPath = resolve(distVersionsDir, `${version.version}.json`);
   const body = JSON.stringify({ updatesAvailable });
