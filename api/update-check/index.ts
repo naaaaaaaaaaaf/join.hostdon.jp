@@ -9,6 +9,7 @@ const sendError = (response: VercelResponse) => {
 
 export default async (request: VercelRequest, response: VercelResponse) => {
   const version = request.query.version;
+  console.log(request.headers, request.query);
   if (!version) {
     sendError(response);
     return;
