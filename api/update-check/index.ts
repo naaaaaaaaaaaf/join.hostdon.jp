@@ -8,8 +8,9 @@ const sendError = (response: VercelResponse) => {
 };
 
 export default async (request: VercelRequest, response: VercelResponse) => {
-  const version = request.query.version;
   console.log(request.headers, request.query);
+
+  const version = request.query.version;
   if (!version) {
     sendError(response);
     return;
@@ -21,6 +22,8 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     response.status(200).setHeader("Content-Type", "application/json").send(versionJson);
   } catch(e) {
     console.error(e);
-    sendError(response);
+
+    const json = { "updatesAvailable": [] };
+    response.status(200).setHeader("Content-Type", "application/json").send(JSON.stringify(json));
   }
 };
