@@ -24,6 +24,9 @@ const versionsDir = resolve(__dirname, "../versions");
 const files = await readdir(versionsDir, "utf8");
 files.sort((a, b) => compareVersions(formatVersion(a), formatVersion(b)));
 
+console.log("versions");
+files.forEach((file) => console.log(file));
+
 const versions: Version[] = [];
 for (const file of files) {
   const version = basename(file, extname(file));
